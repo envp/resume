@@ -4,7 +4,7 @@
 % This template has been downloaded from:
 % http://www.LaTeXTemplates.com
 %
-% This class file defines the structure and design of the template.
+% This class file defines the structure and design of the template. 
 %
 % Original header:
 % Copyright (C) 2010 by Trey Hunner
@@ -43,7 +43,7 @@
 
 \def \addressSep {$\diamond$} % Set default address separator to a diamond
 
-% One, two or three address lines can be specified
+% One, two or three address lines can be specified 
 \let \@addressone \relax
 \let \@addresstwo \relax
 \let \@addressthree \relax
@@ -85,13 +85,7 @@
 \let\ori@document=\document
 \renewcommand{\document}{
   \ori@document  % Begin document
-  \printname % Print the name specified with \name
-  \@ifundefined{@addressone}{}{ % Print the first address if specified
-    \printaddress{\@addressone}}
-  \@ifundefined{@addresstwo}{}{ % Print the second address if specified
-    \printaddress{\@addresstwo}}
-     \@ifundefined{@addressthree}{}{ % Print the third address if specified
-    \printaddress{\@addressthree}}
+  \printname
 }
 
 %----------------------------------------------------------------------------------------
@@ -109,23 +103,31 @@
   \item[]
 }{
   \end{list}
+  \vspace{-0.5em}
 }
 
 %----------------------------------------------------------------------------------------
 %	WORK EXPERIENCE FORMATTING
 %----------------------------------------------------------------------------------------
 
-\newenvironment{rSubsection}[4]{ % 4 input arguments - company name, year(s) employed, job title and location
- {\bfseries #1} \hfill {\bfseries #2} % Bold company name and date on the right
+\newenvironment{workEx}[4]{ % 4 input arguments - company name, year(s) employed, job title and location
+ {\fontsize{1.15em}{1em}\selectfont\bfseries #1} \hfill {\fontsize{1.15em}{1em}\selectfont\bfseries #2} % Bold company name and date on the right
  \ifthenelse{\equal{#3}{}}{}{ % If the third argument is not specified, don't print the job title and location line
   \\
   {\em #3} \hfill {\em #4} % Italic job title and location
   }\smallskip
   \begin{list}{\tiny $\bullet$}{\leftmargin=0em} % \cdot used for bullets, no indentation
    \itemsep -0.5em \vspace{-0.5em} % Compress items in list together for aesthetics
-  }{
+    \item[]
+}{
   \end{list}
   \vspace{0.25em} % Some space after the list of bullet points
+}
+
+\newenvironment{project}[2]{
+    {\bfseries #1} \hfill {\bfseries #2}
+    \begin{itemize}\itemsep -0.5em \vspace{-0.5em}
+}{\end{itemize}
 }
 
 % The below commands define the whitespace after certain things in the document - they can be \smallskip, \medskip or \bigskip
@@ -136,6 +138,6 @@
 \def\sectionTitleSize{\fontsize{16}{22}\selectfont}
 
 \def\addressskip{\smallskip} % The space between the two address (or phone/email) lines
-\def\sectionlineskip{\medskip} % The space above the horizontal line for each section
+\def\sectionlineskip{\medskip} % The space above the horizontal line for each section 
 \def\nameskip{\bigskip} % The space after your name at the top
 \def\sectionskip{\medskip} % The space after the heading section

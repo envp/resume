@@ -23,28 +23,21 @@
 \documentclass{resume} % Use the custom resume.cls style
 \usepackage{import}
 \usepackage{lato}
+\usepackage{hyperref}
+
 % Document margins
 \usepackage[left=0.3in,top=0.6in,right=0.5in,bottom=0.1in]{geometry}
-
+\usepackage[none]{hyphenat}
 \newcommand{\tab}[1]{\hspace{.2667\textwidth}\rlap{#1}}
 \newcommand{\itab}[1]{\hspace{0em}\rlap{#1}}
 
 % Configure a directory location for sections
 \newcommand*{\sectiondir}{_parts/}
 
-\name{Vaibhav Yenamandra}
-
 % Fix fontawesome not working with pdfLaTeX
 \usepackage{fontawesome}
-\DeclareFontFamily{U}{FontAwesomeOne}{}
-\DeclareFontShape{U}{FontAwesomeOne}{m}{n}{<-> FontAwesome--fontawesomeone}{}
-\DeclareRobustCommand\FAone{\fontencoding{U}\fontfamily{FontAwesomeOne}\fontseries{m}\fontshape{n}\selectfont}
-\DeclareFontFamily{U}{FontAwesomeTwo}{}
-\DeclareFontShape{U}{FontAwesomeTwo}{m}{n}{<-> FontAwesome--fontawesometwo}{}
-\DeclareRobustCommand\FAtwo{\fontencoding{U}\fontfamily{FontAwesomeTwo}\fontseries{m}\fontshape{n}\selectfont}
-\DeclareFontFamily{U}{FontAwesomeThree}{}
-\DeclareFontShape{U}{FontAwesomeThree}{m}{n}{<-> FontAwesome--fontawesomethree}{}
-\DeclareRobustCommand\FAthree{\fontencoding{U}\fontfamily{FontAwesomeThree}\fontseries{m}\fontshape{n}\selectfont}
+
+\name{Vaibhav Yenamandra}
 
 \begin{document}
 % 
@@ -52,12 +45,17 @@
 %
 {\centering
 \fontfamily{cmss}\selectfont
-\faEnvelope$~~$\url{yvvaibhav@gmail.com} \hfill \faPhone$~~$\text{(352) 888-0796} \hfill \faGithub$~~$\text{vaibhav-y} \hfill \faLinkedinSquare$~~$\text{theyenaman} \hfill \faGlobe$~~$\text{theyenaman.me}\par
+\hfill
+\faEnvelope$~~$\underline{\text{\href{mailto://yvvaibhav@gmail.com}{yvvaibhav@gmail.com}}}
+\hfill
+\faGithub$~~$\underline{\text{\href{https://github.com/envp}{github/envp}}}
+\hfill
+\faLinkedinSquare$~~$\underline{\text{\href{https://www.linkedin.com/in/theyenaman}{linkedin/theyenaman}}}
+\hfill
+\faLink$~~$\underline{\text{\href{https://calloc.net}{calloc.net}}}
+\par
+\vspace{-0.5em}
 }
-%
-%	EDUCATION SECTION
-%
-\import{\sectiondir}{education.tex}
 
 %
 %	TECHNICAL STRENGTHS SECTION
@@ -70,18 +68,8 @@
 \import{\sectiondir}{experience.tex}
 
 %
-%	WORK EXPERIENCE SECTION
+%	EDUCATION SECTION
 %
-\import{\sectiondir}{projects.tex}
-
-%
-%	ACHIEVEMENTS :(
-%
-%\import{\sectiondir}{achievements.tex}
-
-%
-%	RESPONSIBILTIES
-%
-\import{\sectiondir}{responsibilities.tex}
+\import{\sectiondir}{education.tex}
 
 \end{document}

@@ -1,8 +1,10 @@
 name: "Build PDF and Release"
 on:
   push:
+    branches:
+      - main
     paths-ignore:
-      - **/*.md
+      - '**/*.md'
       - .gitignore
       - .overleaf
 

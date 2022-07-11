@@ -96,7 +96,7 @@
 \newenvironment{rSection}[1]{ % 1 input argument - section name
   \sectionskip
   {\sectionTitleSize \bfseries \scshape {#1}} % Section title
-  \fontfamily{cmr}\fontsize{10}{12}\selectfont
+  \fontfamily{lmr}\fontsize{10}{12}\selectfont
   \begin{list}{}{ % List for each individual item in the section
     \setlength{\leftmargin}{1.5em} % Margin within the section
   }

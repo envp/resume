@@ -1,0 +1,21 @@
+name: "Build PDF and Release"
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-tex-sources:
+    name: 'Build TeX Sources'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Out Code
+        uses: actions/checkout@v2
+      - name: Build PDF Document
+        run: make PDFOUT_BASENAME=resume-$(date --iso-8601) pdf
+      - name: Cut Release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "src/resume-*.pdf"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          artifactContentType: "application/x-pdf"

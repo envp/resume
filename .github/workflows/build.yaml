@@ -3,6 +3,10 @@ on:
   push:
     branches:
       - main
+    paths-ignore:
+      - '**/*.md'
+      - .gitignore
+      - .overleaf
 
 jobs:
   build-tex-sources:
@@ -13,9 +17,17 @@ jobs:
         uses: actions/checkout@v2
       - name: Build PDF Document
         run: make PDFOUT_BASENAME=resume-$(date --iso-8601) pdf
-      - name: Cut Release
+      - name: Calculate Tag
+        id: calculate-tag
+        run: echo "::set-output name=tag::$(date -u +'%Y%m%dT%H%M%S')"
+      - name: Create Tag
+        uses: rickstaa/action-create-tag@v1
+        with:
+          tag: release/${{ steps.calculate-tag.outputs.tag }}
+      - name: Publish Release
         uses: ncipollo/release-action@v1
         with:
           artifacts: "src/resume-*.pdf"
           token: ${{ secrets.GITHUB_TOKEN }}
           artifactContentType: "application/x-pdf"
+          tag: ${{ steps.calculate-tag.outputs.tag }}

@@ -1,8 +1,6 @@
 name: "Build PDF and Release"
 on:
   push:
-    branches:
-      - main
     paths-ignore:
       - **/*.md
       - .gitignore
@@ -20,6 +18,9 @@ jobs:
       - name: Cut Release
         uses: ncipollo/release-action@v1
         with:
+          env:
+            DATE=$(date -u +"%Y%m%dT%H%M%S")
           artifacts: "src/resume-*.pdf"
           token: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ env.DATE }}
           artifactContentType: "application/x-pdf"

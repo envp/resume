@@ -3,6 +3,13 @@ on:
   pull_request:
     branches:
       - main
+    paths-ignore:
+      - '**/*.md'
+      - .gitignore
+      - .overleaf
+env:
+  TIMESTAMP: 
+
 jobs:
   build-tex-sources:
     name: 'Build TeX Sources'
@@ -12,12 +19,17 @@ jobs:
         uses: actions/checkout@v2
       - name: Build PDF document
         run: make PDFOUT_BASENAME=resume-pr pdf
-      - name: Publish PDF
-        if: ${{ github.event_name == 'pull_request' }}
-        uses: gavv/pull-request-artifacts@v1.0.0
+      - name: Calculate Tag
+        id: calculate-tag
+        run: echo "::set-output name=tag::$(date -u +'%Y%m%dT%H%M%S')"
+      - name: Create Tag
+        uses: rickstaa/action-create-tag@v1
         with:
-          commit: ${{ github.event.pull_request.head.sha }}
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          artifacts-branch: artifacts
-          artifacts: ./src/resume-pr.pdf
-
+          tag: release/${{ steps.calculate-tag.outputs.tag }}
+      - name: Publish Release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "src/resume-*.pdf"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          artifactContentType: "application/x-pdf"
+          tag: ${{ steps.calculate-tag.outputs.tag }}
